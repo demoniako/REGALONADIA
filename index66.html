@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>Bienvenido al Juego de Jose</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+            animation: glow 1.5s infinite alternate, pulsate 2s infinite;
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+            }
+            100% {
+                text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 50px #ff0000;
+            }
+        }
+
+        @keyframes pulsate {
+            0% {
+                font-size: 3rem;
+            }
+            50% {
+                font-size: 4rem;
+            }
+            100% {
+                font-size: 3rem;
+            }
+        }
+
+        .button-container {
+            margin-top: 2rem;
+        }
+
+        .crazy-button {
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+            background: linear-gradient(45deg, #ff0000, #ff6f00, #ff0000);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px #ff0000, 0 0 40px #ff6f00, 0 0 60px #ff0000;
+            animation: buttonGlow 2s infinite alternate;
+            transition: transform 0.2s ease;
+        }
+
+        .crazy-button:hover {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        @keyframes buttonGlow {
+            0% {
+                box-shadow: 0 0 20px #ff0000, 0 0 40px #ff6f00, 0 0 60px #ff0000;
+            }
+            100% {
+                box-shadow: 0 0 40px #ff0000, 0 0 80px #ff6f00, 0 0 100px #ff0000;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.msRequestFullscreen) {
+                document.documentElement.msRequestFullscreen();
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>BIENVENIDO AL JUEGO DE JOSE</h1>
+    <div class="button-container">
+        <button class="crazy-button" onclick="window.location.href='index2.html'">EMPEZAR</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donde está la Llave</title>
+    <style>
+        /* Estilo general */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            color: #ff0000;
+            overflow: hidden;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Fondo dinámico de partículas */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* Contenedor central */
+        .contenedor {
+            z-index: 2;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 5rem;
+            text-transform: uppercase;
+            color: #ff0000;
+            text-shadow: 0 0 15px #ff0000, 0 0 30px #ff3333, 0 0 45px #ff6666;
+            animation: parpadeo 1.5s infinite alternate;
+        }
+
+        button {
+            font-size: 2rem;
+            padding: 15px 40px;
+            background: transparent;
+            border: 3px solid #ff3333;
+            color: #ff0000;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 50px;
+            animation: brilloBoton 2s infinite alternate;
+            box-shadow: 0 0 20px #ff3333;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background: #ff3333;
+            color: #000;
+            box-shadow: 0 0 30px #ff6666, inset 0 0 15px #ff3333;
+        }
+
+        #mensaje {
+            display: none;
+            font-size: 2rem;
+            margin-top: 20px;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff3333, 0 0 30px #ff6666;
+            animation: revelarTexto 1.5s ease-in-out forwards;
+        }
+
+        /* Animaciones */
+        @keyframes parpadeo {
+            0% {
+                text-shadow: 0 0 20px #ff0000, 0 0 40px #ff3333, 0 0 60px #ff6666;
+            }
+            100% {
+                text-shadow: 0 0 30px #ff3333, 0 0 50px #ff6666, 0 0 80px #ff9999;
+            }
+        }
+
+        @keyframes brilloBoton {
+            0% {
+                box-shadow: 0 0 15px #ff3333;
+            }
+            100% {
+                box-shadow: 0 0 30px #ff6666;
+            }
+        }
+
+        @keyframes revelarTexto {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fondo de partículas -->
+    <canvas id="particulas"></canvas>
+
+    <!-- Contenido central -->
+    <div class="contenedor">
+        <h1>💡 ¿LA LLAVE? 💡</h1>
+        <button onclick="mostrarMensaje()">Descubre la llave</button>
+        <p id="mensaje">La llave está escondida debajo del teclado<br>del ordenador de tu habitación.</p>
+    </div>
+
+    <script>
+        // Configuración de partículas
+        const canvas = document.getElementById('particulas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particulasArray = [];
+
+        class Particula {
+            constructor(x, y, dx, dy, size) {
+                this.x = x;
+                this.y = y;
+                this.dx = dx;
+                this.dy = dy;
+                this.size = size;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = 'rgba(255, 0, 0, 0.7)';
+                ctx.shadowColor = 'red';
+                ctx.shadowBlur = 20;
+                ctx.fill();
+            }
+
+            update() {
+                this.x += this.dx;
+                this.y += this.dy;
+
+                // Rebote en los bordes
+                if (this.x < 0 || this.x > canvas.width) this.dx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.dy *= -1;
+
+                this.draw();
+            }
+        }
+
+        function initParticulas() {
+            particulasArray = [];
+            for (let i = 0; i < 100; i++) {
+                const size = Math.random() * 3 + 1;
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const dx = Math.random() * 2 - 1;
+                const dy = Math.random() * 2 - 1;
+                particulasArray.push(new Particula(x, y, dx, dy, size));
+            }
+        }
+
+        function animar() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particulasArray.forEach((particula) => particula.update());
+            requestAnimationFrame(animar);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticulas();
+        });
+
+        initParticulas();
+        animar();
+
+        // Mostrar el mensaje
+        function mostrarMensaje() {
+            const mensaje = document.getElementById('mensaje');
+            mensaje.style.display = 'block';
+            mensaje.style.animation = 'revelarTexto 1.5s ease-in-out forwards';
+
+            // Sonido al descubrir
+            const audio = new Audio('https://www.soundjay.com/button/beep-07.wav');
+            audio.play();
+        }
+    </script>
+</body>
+</html>

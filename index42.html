@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuentra la Llave</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000000;
+            color: #f70000;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff0000;
+        }
+        #game {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .room {
+            width: 100px;
+            height: 100px;
+            background-color: #000000;
+            border: 2px solid #ff0000;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .room:hover {
+            background-color: #4682b4;
+            transform: scale(1.1);
+        }
+        .room.correct {
+            background-color: #32cd32;
+            color: white;
+        }
+        .room.incorrect {
+            background-color: #ff6347;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Encuentra la Llave</h1>
+    <p>Selecciona una habitación de la casa para buscar la llave. ¿Dónde estará?</p>
+    <div id="game"></div>
+
+    <script>
+        // Lista de lugares en una casa
+        const rooms = [
+            "Cocina", "Baño", "Sala", "Comedor", "Dormitorio principal", "Habitación de invitados", "Garaje", "Jardín", "Sótano", "Ático",
+            "Pasillo", "Vestíbulo", "Oficina", "Lavandería", "Patio", "Balcón", "Terraza", "Cuarto de juegos", "Bodega", "Despensa",
+            "Biblioteca", "Cuarto de herramientas", "Cuarto de almacenamiento", "Gimnasio", "Piscina", "Closet principal", "Closet de pasillo",
+            "Cuarto de limpieza", "Cuarto de calderas", "Solárium", "Recibidor", "Sala de estar", "Taller", "Cuarto de arte", "Zona de estudio",
+            "Sauna", "Sala de cine", "Terraza cubierta", "Zona de mascotas", "Baño de servicio", "Cocina secundaria", "Sala de lectura",
+            "Invernadero", "Zona de barbacoa", "Cuarto de costura", "Cuarto de música", "Sala de espera", "Zona de jardín interior",
+            "Cava de vinos", "Sala de ensayo", "Zona de manualidades", "Sala de juegos", "Zona de meditación", "Cuarto de spa",
+            "Zona de lavandería", "Cuarto de visitas", "Zona de relax", "Zona de yoga", "Zona de lectura", "Cuarto de trofeos",
+            "Cuarto de cámaras", "Sala técnica", "Zona de máquinas", "Zona de reciclaje", "Cuarto de archivos", "Zona de diseño",
+            "Zona de almacenaje", "Cuarto de primeras ayudas", "Cuarto de maquetas", "Zona de pinturas", "Zona de herramientas",
+            "Zona de reparaciones", "Zona de entrenamiento", "Cuarto de calzado", "Zona de ropa", "Zona de maquillaje",
+            "Cuarto de descanso", "Zona de lectura nocturna", "Zona de jardinería", "Cuarto de acuarios", "Zona de tecnología",
+            "Zona de fotografía", "Cuarto de impresión", "Zona de dibujo", "Zona de gráficos", "Zona de programación",
+            "Cuarto de servidores", "Zona de proyección", "Zona de sistemas", "Zona de desarrollo", "Cuarto de producción",
+            "Zona de impresión 3D", "Cuarto de laboratorio", "Zona de análisis", "Cuarto de planificación", "Zona de reuniones"
+        ];
+
+        // Seleccionar un lugar correcto aleatorio
+        const correctIndex = Math.floor(Math.random() * rooms.length);
+        rooms[correctIndex] = "En tu habitación";
+
+        const gameContainer = document.getElementById("game");
+
+        // Función para manejar la selección de un lugar
+        function selectRoom(element, isCorrect) {
+            if (isCorrect) {
+                element.classList.add("correct");
+                window.location.href = "index43.html"; // Redirigir a otra página
+            } else {
+                element.classList.add("incorrect");
+                alert("Incorrecto. Sigue buscando.");
+            }
+        }
+
+        // Crear botones para cada lugar
+        rooms.forEach((room, index) => {
+            const roomElement = document.createElement("div");
+            roomElement.classList.add("room");
+            roomElement.textContent = room;
+            roomElement.addEventListener("click", () => selectRoom(roomElement, index === correctIndex));
+            gameContainer.appendChild(roomElement);
+        });
+    </script>
+</body>
+</html>

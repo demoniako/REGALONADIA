@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EL JUEGO DE JOSE</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000; /* Fondo negro */
+            color: #ff0000; /* Letras y números rojos */
+        }
+        .contador {
+            text-align: center;
+        }
+        .contador h1 {
+            font-size: 15rem; /* Tamaño más grande */
+            margin: 0;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px #ff0000; /* Efecto brillante */
+        }
+        .contador p {
+            font-size: 1.5rem;
+            color: #ff0000;
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000; /* Efecto brillante */
+        }
+    </style>
+</head>
+<body>
+    <div class="contador">
+        <h1 id="timer">05:00</h1>
+        <p>El JUEGO EMPEZARÁ PRONTO...</p>
+        <P>SI REINICIAS LA PAGINA EL CONTADOR VOLVERÁ A EMPEZAR,DEBERÁS ESPERAR EL TIEMPO ANTES DE COMENZAR.</P>
+    </div>
+
+    <script>
+        // Inicializar el contador en 300 segundos (5 minutos)
+        let tiempo = 300;
+
+        const actualizarContador = () => {
+            const minutos = Math.floor(tiempo / 60);
+            const segundos = tiempo % 60;
+
+            // Formatear para que siempre se muestren 2 dígitos
+            const tiempoFormateado = 
+                `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+            
+            document.getElementById('timer').textContent = tiempoFormateado;
+
+            // Si el tiempo llega a 0, redirige a otra página
+            if (tiempo === 0) {
+                window.location.href = "index66.html";
+            } else {
+                tiempo--;
+            }
+        };
+
+        // Actualizar el contador cada segundo
+        setInterval(actualizarContador, 1000);
+    </script>
+</body>
+</html>
