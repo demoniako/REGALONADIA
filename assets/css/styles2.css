@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #030303;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #ff0000;
+}
+
+#game {
+    margin: 20px 0;
+}
+
+.choice {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.choice:hover {
+    background-color: #0056b3;
+}
+
+#result {
+    margin-top: 20px;
+}
+
+#result p {
+    font-size: 18px;
+    color: #ff0000;
+}

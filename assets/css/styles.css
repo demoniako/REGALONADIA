@@ -1,0 +1,28 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #000; /* Fondo negro */
+    color: #f70a0a; /* Texto en blanco para mejor contraste */
+    margin: 0;
+    padding: 0;
+}
+
+#game-area {
+    width: 90vw;
+    height: 60vh;
+    margin: 20px auto;
+    border: 2px solid #333;
+    position: relative;
+    background-color: #000; /* Fondo negro */
+    overflow: hidden;
+}
+
+#circle {
+    width: 50px;
+    height: 50px;
+    background-color: red; /* Bola roja */
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+}
